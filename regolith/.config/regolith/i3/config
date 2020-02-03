@@ -14,7 +14,7 @@ set $i3xrocks_config /etc/regolith/i3xrocks/config
 set $compton_config /etc/regolith/compton/config
 
 # path to terminal. Override this to specify a custom terminal.
-set $terminal_path /usr/bin/st
+set $terminal_path /usr/bin/alacritty
 
 # Color values are defined in ~/.Xresources-regolith
 # These are the labels which define each i3 workspace.
@@ -65,10 +65,10 @@ bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+bindsym $mod+n focus left
+bindsym $mod+i focus down
+bindsym $mod+r focus up
+bindsym $mod+o focus right
 
 # move windows in workspaces
 bindsym $mod+Shift+Left move left
@@ -76,23 +76,25 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+Shift+n move left
+bindsym $mod+Shift+i move down
+bindsym $mod+Shift+r move up
+bindsym $mod+Shift+o move right
 
 # toggle split orientation
 #bindsym $mod+BackSpace split toggle
+bindsym $mod+h splith
+bindsym $mod+v splitv
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym $mod+t fullscreen toggle
 
 # change gaps interactively
 bindsym $mod+minus gaps inner current minus 6
 bindsym $mod+plus gaps inner current plus 6
 
 # show/hide keybindings
-#bindsym $mod+Shift+question exec --no-startup-id /usr/bin/conky-toggle
+bindsym $mod+Shift+question exec --no-startup-id /usr/bin/conky-toggle
 
 # toggle tiling / floating
 #bindsym $mod+Shift+f floating toggle
@@ -101,7 +103,7 @@ bindsym $mod+plus gaps inner current plus 6
 #bindsym $mod+Shift+t focus mode_toggle
 
 # toggle tabbed mode
-bindsym $mod+t layout toggle tabbed splith splitv
+#bindsym $mod+t layout toggle tabbed splith splitv
 
 # move to workspace
 bindsym $mod+1 workspace $ws1
@@ -174,7 +176,8 @@ bindsym $mod+$alt+Ctrl+9 move container to workspace $ws19; workspace $ws19
 bindsym $mod+Shift+c reload
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+# u: update
+bindsym $mod+Shift+u restart
 
 # Logout of session
 bindsym $mod+Shift+e exec /usr/bin/gnome-session-quit --logout
@@ -192,13 +195,13 @@ bindsym $mod+Escape exec gnome-screensaver-command --lock
 bindsym $mod+Shift+s exec systemctl suspend
 
 # shortcuts for common system configuration tasks
-bindsym $mod+c exec gnome-control-center
-bindsym $mod+w exec gnome-control-center wifi
-bindsym $mod+b exec gnome-control-center bluetooth
-bindsym $mod+d exec gnome-control-center display
-bindsym $mod+n exec gnome-control-center network
-bindsym $mod+p exec gnome-control-center power
-bindsym $mod+s exec gnome-control-center sound
+#bindsym $mod+c exec gnome-control-center
+#bindsym $mod+w exec gnome-control-center wifi
+#bindsym $mod+b exec gnome-control-center bluetooth
+#bindsym $mod+d exec gnome-control-center display
+#bindsym $mod+n exec gnome-control-center network
+#bindsym $mod+p exec gnome-control-center power
+#bindsym $mod+s exec gnome-control-center sound
 
 # resize window (you can also use the mouse for that)
 mode "Resize Mode" {
@@ -228,7 +231,7 @@ mode "Resize Mode" {
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }
-bindsym $mod+r mode "Resize Mode"
+bindsym $mod+l mode "Resize Mode"
 
 # Disable titlebar
 new_window pixel 1
@@ -277,7 +280,7 @@ client.urgent           $urgent.color.border               $urgent.color.backgro
 popup_during_fullscreen smart
 
 # window focus follows your mouse movements as the mouse crosses window borders
-focus_follows_mouse no
+focus_follows_mouse yes
 
 set_from_resource $i3-wm.bar.background.color i3-wm.bar.background.color "#002b36"
 set_from_resource $i3-wm.bar.statusline.color i3-wm.bar.statusline.color "#93a1a1"
@@ -332,6 +335,3 @@ exec --no-startup-id /usr/bin/regolith-ftue
 
 # Hide the mouse pointer if unused for a duration
 exec --no-startup-id /usr/bin/unclutter -b
-
-# Refresh wallpaper on screen resolution change
-exec --no-startup-id /usr/bin/xeventbind resolution /usr/bin/wallpaper-refresh
