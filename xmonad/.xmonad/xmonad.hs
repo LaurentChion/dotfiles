@@ -338,6 +338,26 @@ myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
                  t = 0.95 -h
                  l = 0.95 -w
 
+---------
+-- Colors
+---------
+base03  = "#272822"
+base02  = "#48483e"
+base01  = "#555645"
+base00  = "#76715e"
+base0   = "#839496"
+base1   = "#acada1"
+base2   = "#f1ebeb"
+base3   = "#cfd0c2"
+yellow  = "#e7db75"
+orange  = "#fba922"
+red     = "#cc342b"
+magenta = "#fa2772"
+violet  = "#9358fe"
+blue    = "#55bcce"
+cyan    = "#66efd5"
+green   = "#8fc029"
+
 ------------------------------------------------------------------------
 ---MAIN
 ------------------------------------------------------------------------
@@ -352,13 +372,13 @@ main = do
         { manageHook = ( isFullscreen --> doFullFloat ) <+> myManageHook <+> manageHook desktopConfig <+> manageDocks
         , logHook = dynamicLogWithPP xmobarPP
                         { ppOutput = \x -> hPutStrLn xmproc0 x -- >> hPutStrLn xmproc1 x  >> hPutStrLn xmproc2 x
-                        , ppCurrent = xmobarColor "#c3e88d" "" . wrap "[" "]" -- Current workspace in xmobar
-                        , ppVisible = xmobarColor "#c3e88d" ""                -- Visible but not current workspace
-                        , ppHidden = xmobarColor "#82AAFF" "" . wrap "*" ""   -- Hidden workspaces in xmobar
-                        , ppHiddenNoWindows = xmobarColor "#F07178" ""        -- Hidden workspaces (no windows)
-                        , ppTitle = xmobarColor "#d0d0d0" "" . shorten 80     -- Title of active window in xmobar
+                        , ppCurrent = xmobarColor green "" . wrap "[" "]" -- Current workspace in xmobar
+                        , ppVisible = xmobarColor green ""                -- Visible but not current workspace
+                        , ppHidden = xmobarColor blue "" . wrap "*" ""   -- Hidden workspaces in xmobar
+                        , ppHiddenNoWindows = xmobarColor magenta ""        -- Hidden workspaces (no windows)
+                        , ppTitle = xmobarColor base2 "" . shorten 80     -- Title of active window in xmobar
                         , ppSep =  "<fc=#666666> | </fc>"                     -- Separators in xmobar
-                        , ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"  -- Urgent workspace
+                        , ppUrgent = xmobarColor orange "" . wrap "!" "!"  -- Urgent workspace
                         , ppExtras  = [windowCount]                           -- # of windows current workspace
                         , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
                         }
@@ -368,7 +388,7 @@ main = do
         , layoutHook         = myLayoutHook 
         , workspaces         = myWorkspaces
         , borderWidth        = myBorderWidth
-        , normalBorderColor  = "#292d3e"
-        , focusedBorderColor = "#bbc5ff"
+        , normalBorderColor  = base03
+        , focusedBorderColor = base2
         , keys = \c -> belgianKeys c <+> keys desktopConfig c
         } `additionalKeysP`         myKeys 
