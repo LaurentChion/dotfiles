@@ -174,38 +174,38 @@ myKeys =
         
         , ("M-C-M1-<Up>", sendMessage Arrange)
         , ("M-C-M1-<Down>", sendMessage DeArrange)
-        --, ("M-<Up>", sendMessage (MoveUp 10))             --  Move focused window to up
-        --, ("M-<Down>", sendMessage (MoveDown 10))         --  Move focused window to down
-        --, ("M-<Right>", sendMessage (MoveRight 10))       --  Move focused window to right
-        --, ("M-<Left>", sendMessage (MoveLeft 10))         --  Move focused window to left
-        --, ("M-S-<Up>", sendMessage (IncreaseUp 10))       --  Increase size of focused window up
-        --, ("M-S-<Down>", sendMessage (IncreaseDown 10))   --  Increase size of focused window down
-        --, ("M-S-<Right>", sendMessage (IncreaseRight 10)) --  Increase size of focused window right
-        --, ("M-S-<Left>", sendMessage (IncreaseLeft 10))   --  Increase size of focused window left
-        --, ("M-C-<Up>", sendMessage (DecreaseUp 10))       --  Decrease size of focused window up
-        --, ("M-C-<Down>", sendMessage (DecreaseDown 10))   --  Decrease size of focused window down
-        --, ("M-C-<Right>", sendMessage (DecreaseRight 10)) --  Decrease size of focused window right
-        --, ("M-C-<Left>", sendMessage (DecreaseLeft 10))   --  Decrease size of focused window left
+        , ("M-<Up>", sendMessage (MoveUp 10))             --  Move focused window to up
+        , ("M-<Down>", sendMessage (MoveDown 10))         --  Move focused window to down
+        , ("M-<Right>", sendMessage (MoveRight 10))       --  Move focused window to right
+        , ("M-<Left>", sendMessage (MoveLeft 10))         --  Move focused window to left
+        , ("M-S-<Up>", sendMessage (IncreaseUp 10))       --  Increase size of focused window up
+        , ("M-S-<Down>", sendMessage (IncreaseDown 10))   --  Increase size of focused window down
+        , ("M-S-<Right>", sendMessage (IncreaseRight 10)) --  Increase size of focused window right
+        , ("M-S-<Left>", sendMessage (IncreaseLeft 10))   --  Increase size of focused window left
+        , ("M-C-<Up>", sendMessage (DecreaseUp 10))       --  Decrease size of focused window up
+        , ("M-C-<Down>", sendMessage (DecreaseDown 10))   --  Decrease size of focused window down
+        , ("M-C-<Right>", sendMessage (DecreaseRight 10)) --  Decrease size of focused window right
+        , ("M-C-<Left>", sendMessage (DecreaseLeft 10))   --  Decrease size of focused window left
 
     -- Layouts
         , ("M-<Tab>", sendMessage NextLayout)                              -- Switch to next layout
         , ("M-S-<Space>", sendMessage ToggleStruts)                          -- Toggles struts
         --, ("M-S-n", sendMessage $ Toggle NOBORDERS)                          -- Toggles noborder
         , ("M-t", sendMessage (Toggle NBFULL) >> sendMessage ToggleStruts) -- Toggles noborder/full
-        -- , ("M-t", sendMessage (T.Toggle "monocle"))
-        , ("M-S-x", sendMessage $ Toggle REFLECTX)
-        , ("M-S-y", sendMessage $ Toggle REFLECTY)
-        , ("M-S-m", sendMessage $ Toggle MIRROR)
-        , ("M-<KP_Multiply>", sendMessage (IncMasterN 1))   -- Increase number of clients in the master pane
-        , ("M-<KP_Divide>", sendMessage (IncMasterN (-1)))  -- Decrease number of clients in the master pane
-        , ("M-S-<KP_Multiply>", increaseLimit)              -- Increase number of windows that can be shown
-        , ("M-S-<KP_Divide>", decreaseLimit)                -- Decrease number of windows that can be shown
+        , ("M-f", sendMessage (T.Toggle "float"))
+        --, ("M-S-x", sendMessage $ Toggle REFLECTX)
+        --, ("M-S-y", sendMessage $ Toggle REFLECTY)
+        --, ("M-S-m", sendMessage $ Toggle MIRROR)
+        --, ("M-<KP_Multiply>", sendMessage (IncMasterN 1))   -- Increase number of clients in the master pane
+        --, ("M-<KP_Divide>", sendMessage (IncMasterN (-1)))  -- Decrease number of clients in the master pane
+        --, ("M-S-<KP_Multiply>", increaseLimit)              -- Increase number of windows that can be shown
+        --, ("M-S-<KP_Divide>", decreaseLimit)                -- Decrease number of windows that can be shown
 
         , ("M-h", sendMessage Shrink)
         , ("M-l", sendMessage Expand)
-        , ("M-C-j", sendMessage MirrorShrink)
-        , ("M-C-k", sendMessage MirrorExpand)
-        , ("M-S-;", sendMessage zoomReset)
+        --, ("M-C-j", sendMessage MirrorShrink)
+        --, ("M-C-k", sendMessage MirrorExpand)
+        --, ("M-S-;", sendMessage zoomReset)
         , ("M-;", sendMessage ZoomFullToggle)
 
     -- Workspaces
@@ -221,6 +221,7 @@ myKeys =
     -- Open My Preferred Terminal. I also run the FISH shell. Setting FISH as my default shell 
     -- breaks some things so I prefer to just launch "fish" when I open a terminal.
         , ("M-<Return>", spawn (myTerminal))
+        , ("M-S-<Return>", spawn "firefox")
 		
     --- Dmenu Scripts (Alt+Ctr+Key)
         -- , ("M-S-<Return>", spawn "dmenu_run")
@@ -280,35 +281,35 @@ myWorkspaces = clickable . (map xmobarEscape)
         clickable l = [ "<action=xdotool key super+" ++ show (n) ++ ">" ++ ws ++ "</action>" |
                       (i,ws) <- zip [1..9] l,                                        
                       let n = i ] 
-myManageHook :: Query (Data.Monoid.Endo WindowSet)
-myManageHook = composeAll
-     [
-        className =? "Firefox"     --> doShift "<action=xdotool key super+2>www</action>"
-      , title =? "Vivaldi"         --> doShift "<action=xdotool key super+2>www</action>"
+--myManageHook :: Query (Data.Monoid.Endo WindowSet)
+--myManageHook = composeAll
+     --[
+        --className =? "Firefox"     --> doShift "<action=xdotool key super+2>www</action>"
+      -- , title =? "Vivaldi"         --> doShift "<action=xdotool key super+2>www</action>"
       -- , title =? "irssi"           --> doShift "<action=xdotool key super+6>chat</action>"
       -- , className =? "cmus"        --> doShift "<action=xdotool key super+7>media</action>"
       -- , className =? "vlc"         --> doShift "<action=xdotool key super+7>media</action>"
-      -- , className =? "Virtualbox"  --> doFloat
+      --, className =? "Virtualbox"  --> doFloat
       -- , className =? "Gimp"        --> doFloat
-      , className =? "Gimp"        --> doShift "<action=xdotool key super+8>gfx</action>"
-      , (className =? "Firefox" <&&> resource =? "Dialog") --> doFloat  -- Float Firefox Dialog
-     ] <+> namedScratchpadManageHook myScratchPads
+      --, className =? "Gimp"        --> doShift "<action=xdotool key super+8>gfx</action>"
+      --, (className =? "Firefox" <&&> resource =? "Dialog") --> doFloat  -- Float Firefox Dialog
+     --] <+> namedScratchpadManageHook myScratchPads
 
 ------------------------------------------------------------------------
 ---LAYOUTS
 ------------------------------------------------------------------------
 
-myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts monocle $ 
+myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ --T.toggleLayouts monocle $ 
                mkToggle (NBFULL ?? NOBORDERS ?? EOT) $ myDefaultLayout
              where 
-                myDefaultLayout = grid ||| tall ||| monocle --tall ||| grid ||| threeCol ||| threeRow ||| oneBig ||| noBorders monocle ||| space ||| floats
+                myDefaultLayout = grid ||| tall -- ||| monocle --tall ||| grid ||| threeCol ||| threeRow ||| oneBig ||| noBorders monocle ||| space ||| floats
 
 tall       = renamed [Replace "tall"]     $ limitWindows 12 $ spacing 6 $ ResizableTall 1 (3/100) (1/2) []
 grid       = renamed [Replace "grid"]     $ limitWindows 12 $ spacing 6 $ mkToggle (single MIRROR) $ Grid (16/10)
 --threeCol   = renamed [Replace "threeCol"] $ limitWindows 3  $ ThreeCol 1 (3/100) (1/2) 
 --threeRow   = renamed [Replace "threeRow"] $ limitWindows 3  $ Mirror $ mkToggle (single MIRROR) zoomRow
 --oneBig     = renamed [Replace "oneBig"]   $ limitWindows 6  $ Mirror $ mkToggle (single MIRROR) $ mkToggle (single REFLECTX) $ mkToggle (single REFLECTY) $ OneBig (5/9) (8/12)
-monocle    = renamed [Replace "monocle"]  $ Full-- $ limitWindows 20 $ Full
+-- monocle    = renamed [Replace "monocle"]  $ Full-- $ limitWindows 20 $ Full
 --space      = renamed [Replace "space"]    $ limitWindows 4  $ spacing 12 $ Mirror $ mkToggle (single MIRROR) $ mkToggle (single REFLECTX) $ mkToggle (single REFLECTY) $ OneBig (2/3) (2/3)
 --floats     = renamed [Replace "floats"]   $ limitWindows 20 $ simplestFloat
 
@@ -317,7 +318,7 @@ monocle    = renamed [Replace "monocle"]  $ Full-- $ limitWindows 20 $ Full
 ------------------------------------------------------------------------
 
 myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
-                , NS "cmus" spawnCmus findCmus manageCmus  
+                --, NS "cmus" spawnCmus findCmus manageCmus  
                 ]
 
     where
@@ -368,17 +369,19 @@ main = do
     -- xmproc2 <- spawnPipe "xmobar -x 2 /home/laurent/.config/xmobar/xmobarrc1"
     
     -- the xmonad, ya know...what the WM is named after!
-    xmonad $ ewmh desktopConfig
-        { manageHook = ( isFullscreen --> doFullFloat ) <+> myManageHook <+> manageHook desktopConfig <+> manageDocks
+    xmonad $ ewmh $ desktopConfig
+        { manageHook = ( isFullscreen --> doFullFloat )
+            -- <+> myManageHook
+            <+> manageHook desktopConfig <+> manageDocks
         , logHook = dynamicLogWithPP xmobarPP
                         { ppOutput = \x -> hPutStrLn xmproc0 x -- >> hPutStrLn xmproc1 x  >> hPutStrLn xmproc2 x
                         , ppCurrent = xmobarColor green "" . wrap "[" "]" -- Current workspace in xmobar
                         , ppVisible = xmobarColor green ""                -- Visible but not current workspace
                         , ppHidden = xmobarColor blue "" . wrap "*" ""   -- Hidden workspaces in xmobar
-                        , ppHiddenNoWindows = xmobarColor magenta ""        -- Hidden workspaces (no windows)
+                        , ppHiddenNoWindows = xmobarColor base00 ""        -- Hidden workspaces (no windows)
                         , ppTitle = xmobarColor base2 "" . shorten 80     -- Title of active window in xmobar
                         , ppSep =  "<fc=#666666> | </fc>"                     -- Separators in xmobar
-                        , ppUrgent = xmobarColor orange "" . wrap "!" "!"  -- Urgent workspace
+                        , ppUrgent = xmobarColor magenta "" . wrap "!" "!"  -- Urgent workspace
                         , ppExtras  = [windowCount]                           -- # of windows current workspace
                         , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
                         }
