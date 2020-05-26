@@ -16,7 +16,7 @@ import qualified XMonad.StackSet as W
 
     -- Utilities
 import XMonad.Util.Loggers
-import XMonad.Util.EZConfig (additionalKeysP, additionalMouseBindings)  
+import XMonad.Util.EZConfig (additionalKeysP, additionalMouseBindings, removeKeysP)  
 import XMonad.Util.NamedScratchpad
 import XMonad.Util.Run (safeSpawn, unsafeSpawn, runInTerm, spawnPipe)
 import XMonad.Util.SpawnOnce
@@ -131,8 +131,8 @@ myKeys =
         , ("M-S-a", killAll)                         -- Kill all the windows on current workspace
 
     -- Floating windows
-        , ("M-<Delete>", withFocused $ windows . W.sink)  -- Push floating window back to tile.
-        , ("M-S-<Delete>", sinkAll)                  -- Push ALL floating windows back to tile.
+        , ("M-t", withFocused $ windows . W.sink)  -- Push floating window back to tile.
+        , ("M-S-t", sinkAll)                  -- Push ALL floating windows back to tile.
 
     -- Grid Select
         , (("M-S-t"), spawnSelected'
@@ -188,10 +188,10 @@ myKeys =
         , ("M-C-<Left>", sendMessage (DecreaseLeft 10))   --  Decrease size of focused window left
 
     -- Layouts
-        , ("M-<Tab>", sendMessage NextLayout)                              -- Switch to next layout
-        , ("M-S-<Space>", sendMessage ToggleStruts)                          -- Toggles struts
+        , ("M-l", sendMessage NextLayout)                              -- Switch to next layout
+        --, ("M-S-<Space>", sendMessage ToggleStruts)                          -- Toggles struts
         --, ("M-S-n", sendMessage $ Toggle NOBORDERS)                          -- Toggles noborder
-        , ("M-t", sendMessage (Toggle NBFULL) >> sendMessage ToggleStruts) -- Toggles noborder/full
+        , ("M-s", sendMessage (Toggle NBFULL) >> sendMessage ToggleStruts) -- Toggles noborder/full
         , ("M-f", sendMessage (T.Toggle "float"))
         --, ("M-S-x", sendMessage $ Toggle REFLECTX)
         --, ("M-S-y", sendMessage $ Toggle REFLECTY)
@@ -201,12 +201,12 @@ myKeys =
         --, ("M-S-<KP_Multiply>", increaseLimit)              -- Increase number of windows that can be shown
         --, ("M-S-<KP_Divide>", decreaseLimit)                -- Decrease number of windows that can be shown
 
-        , ("M-h", sendMessage Shrink)
-        , ("M-l", sendMessage Expand)
+        -- , ("M-h", sendMessage Shrink)
+        --, ("M-l", sendMessage Expand)
         --, ("M-C-j", sendMessage MirrorShrink)
         --, ("M-C-k", sendMessage MirrorExpand)
         --, ("M-S-;", sendMessage zoomReset)
-        , ("M-;", sendMessage ZoomFullToggle)
+        --, ("M-;", sendMessage ZoomFullToggle)
 
     -- Workspaces
         , ("M-.", nextScreen)                           -- Switch focus to next monitor
@@ -222,6 +222,7 @@ myKeys =
     -- breaks some things so I prefer to just launch "fish" when I open a terminal.
         , ("M-<Return>", spawn (myTerminal))
         , ("M-S-<Return>", spawn "firefox")
+        , ("M-<Space>", spawn "rofi -show drun -theme Monokai")
 		
     --- Dmenu Scripts (Alt+Ctr+Key)
         -- , ("M-S-<Return>", spawn "dmenu_run")
