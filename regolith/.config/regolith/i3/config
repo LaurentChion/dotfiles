@@ -97,7 +97,7 @@ bindsym $mod+plus gaps inner current plus 6
 bindsym $mod+Shift+question exec --no-startup-id /usr/bin/conky-toggle
 
 # toggle tiling / floating
-#bindsym $mod+Shift+f floating toggle
+bindsym $mod+Shift+f floating toggle
 
 # change focus between tiling / floating windows
 #bindsym $mod+Shift+t focus mode_toggle
@@ -306,6 +306,7 @@ set_from_resource $i3-wm.bar.font i3-wm.bar.font "pango:Source Code Pro Medium 1
 
 # Configure the bar
 bar {
+  position top
   font $i3-wm.bar.font
   separator_symbol " "
   status_command i3xrocks -c $i3xrocks_config
@@ -326,6 +327,9 @@ bar {
 }
 
 # Run programs when i3 starts
+
+# Restore walpaper
+exec --no-startup-id nitrogen --restore
 
 # Start the composite manager
 exec --no-startup-id compton -f --config $compton_config
