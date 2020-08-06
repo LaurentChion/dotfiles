@@ -1,6 +1,6 @@
 export ZSH_CACHE_DIR=~/zsh-cache
-#autoload -Uz compinit
-#compinit
+autoload -Uz compinit
+compinit
 
 source ~/.zsh_plugins.sh
 
