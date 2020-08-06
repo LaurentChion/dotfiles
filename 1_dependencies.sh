@@ -11,7 +11,7 @@ elif command -v yum
 then
   echo "YUM detected"
   # FIXME: define install and clean command
-  install_cmd='sudo yum install -y '
+  install_cmd='sudo dnf install -y '
   clean=''
 elif command -v pacman
 then
