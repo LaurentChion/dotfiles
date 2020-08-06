@@ -24,5 +24,12 @@ else
 fi
 
 $install_cmd stow zsh htop curl
-
 $clean
+
+# Install starship
+curl -fsSL https://starship.rs/install.sh | bash
+
+# Getting antibody (zsh package manager)
+echo "Installing zsh packages"
+curl -sfL git.io/antibody | sh -s - -b .
+
