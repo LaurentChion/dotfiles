@@ -1,11 +1,27 @@
 #/bin/bash
 
 #TODO: define an install command template based on the distro
-install_cmd='sudo apt install -y '
-clean='sudo apt autoremove'
 
-# To download vscode
-firefox https://code.visualstudio.com/docs/?dv=win32user
+if command -v apt
+then
+  echo "APT deteted"
+  install_cmd='sudo apt install -y '
+  clean='sudo apt autoremove'
+elif command -v yum
+then
+  echo "YUM detected"
+  # FIXME: define install and clean command
+  install_cmd='sudo yum install -y '
+  clean=''
+elif command -v pacman
+then
+  echo "PACMAN detected"
+  # FIXME: define install and clean command
+  install_cmd='sudo pacman -Syu '
+  clean=''
+else
+  echo "Install command not found "
+fi
 
 $install_cmd stow zsh htop curl
 
