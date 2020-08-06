@@ -259,6 +259,8 @@ myKeys =
         , ("<XF86AudioRaiseVolume>", spawn "amixer set Master 5%+ unmute")
         , ("<XF86HomePage>", spawn "firefox")
         , ("<XF86Search>", safeSpawn "firefox" ["https://www.google.com/"])
+        , ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 20")
+        , ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 20")
         -- , ("<XF86Mail>", runOrRaise "geary" (resource =? "thunderbird"))
         --, ("<XF86Calculator>", runOrRaise "gcalctool" (resource =? "gcalctool"))
         -- , ("<XF86Eject>", spawn "toggleeject")
