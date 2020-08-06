@@ -7,9 +7,9 @@ then
   echo "APT deteted"
   install_cmd='sudo apt install -y '
   clean='sudo apt autoremove'
-elif command -v yum
+elif command -v dnf
 then
-  echo "YUM detected"
+  echo "DNF detected"
   # FIXME: define install and clean command
   install_cmd='sudo dnf install -y '
   clean=''
