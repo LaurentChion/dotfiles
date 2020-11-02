@@ -1,0 +1,17 @@
+! Almost monokai 
+#define color_base03    #000000
+#define color_base02    #333366
+#define color_base01    #333399
+#define color_base00    #66cccc
+#define color_base0     #669999
+#define color_base1     #666699
+#define color_base2     #ccffff
+#define color_base3     #99cccc
+#define color_yellow    #3366cc
+#define color_orange    #6699ff
+#define color_red       #6666cc
+#define color_magenta   #0066ff
+#define color_violet    #9358fe
+#define color_blue      #006699
+#define color_cyan      #00ccff
+#define color_green     #0099cc

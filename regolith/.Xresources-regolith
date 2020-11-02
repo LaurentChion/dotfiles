@@ -3,7 +3,8 @@
 ! -- Styles - Colors
 !
 ! Uncomment one and only one of the following color definitions: 
-#include ".Xresources.d/almost-monokai"
+!#include ".Xresources.d/almost-monokai"
+#include ".Xresources.d/visi-blue"
 
 ! -- Styles - Fonts
 ! NOTE: Font packages may need to be installed when enabling typefaces.
