@@ -20,6 +20,9 @@ export GOPATH=$HOME/go
 # POETRY
 export PATH=$PATH:$HOME/.poetry/bin
 
+# POETRY
+export PATH=$PATH:$HOME/Software/sonar-scanner-4.5.0.2216-linux/bin
+
 # CONDA
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -36,3 +39,8 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+
+zstyle ':completion:*' menu select
+fpath+=~/.zfunc
+
+source /home/laurent/.config/broot/launcher/bash/br
