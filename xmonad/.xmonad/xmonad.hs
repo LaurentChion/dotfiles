@@ -1,4 +1,4 @@
--- The xmonad configuration of Derek Taylor (DistroTube)
+-- Fork from the xmonad configuration of Derek Taylor (DistroTube)
 -- http://www.youtube.com/c/DistroTube
 -- http://www.gitlab.com/dwt1/
 
@@ -16,7 +16,7 @@ import qualified XMonad.StackSet as W
 
     -- Utilities
 import XMonad.Util.Loggers
-import XMonad.Util.EZConfig (additionalKeysP, additionalMouseBindings, removeKeysP)  
+import XMonad.Util.EZConfig (additionalKeysP, additionalMouseBindings, removeKeysP)
 import XMonad.Util.NamedScratchpad
 import XMonad.Util.Run (safeSpawn, unsafeSpawn, runInTerm, spawnPipe)
 import XMonad.Util.SpawnOnce
@@ -24,7 +24,7 @@ import XMonad.Util.SpawnOnce
     -- Hooks
 import XMonad.Hooks.DynamicLog (dynamicLogWithPP, defaultPP, wrap, pad, xmobarPP, xmobarColor, shorten, PP(..))
 import XMonad.Hooks.ManageDocks (avoidStruts, docksStartupHook, manageDocks, ToggleStruts(..))
-import XMonad.Hooks.ManageHelpers (isFullscreen, isDialog,  doFullFloat, doCenterFloat) 
+import XMonad.Hooks.ManageHelpers (isFullscreen, isDialog,  doFullFloat, doCenterFloat)
 import XMonad.Hooks.Place (placeHook, withGaps, smart)
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.EwmhDesktops   -- required for xcomposite in obs to work
@@ -43,10 +43,10 @@ import XMonad.Actions.MouseResize
 import qualified XMonad.Actions.ConstrainedResize as Sqr
 
     -- Layouts modifiers
-import XMonad.Layout.PerWorkspace (onWorkspace) 
+import XMonad.Layout.PerWorkspace (onWorkspace)
 import XMonad.Layout.Renamed (renamed, Rename(CutWordsLeft, Replace))
 import XMonad.Layout.WorkspaceDir
-import XMonad.Layout.Spacing (spacing) 
+import XMonad.Layout.Spacing (spacing)
 import XMonad.Layout.NoBorders
 import XMonad.Layout.LimitWindows (limitWindows, increaseLimit, decreaseLimit)
 import XMonad.Layout.WindowArranger (windowArrange, WindowArrangerMsg(..))
@@ -70,26 +70,30 @@ import XMonad.Prompt (defaultXPConfig, XPConfig(..), XPPosition(Top), Direction1
 
 import XMonad.Config.Azerty
 
+-- import Eww (startDaemon, closeAll)
 
 ------------------------------------------------------------------------
 ---CONFIG
 ------------------------------------------------------------------------
 myFont          = "xft:Delugia Nerd Font:regular:pixelsize=12"
 myModMask       = mod4Mask  -- Sets modkey to super/windows key
-myTerminal      = "alacritty"      -- Sets default terminal
+myTerminal      = "kitty"      -- Sets default terminal
 myTextEditor    = "nano"     -- Sets default text editor
 myBorderWidth   = 0         -- Sets border width for windows
 windowCount     = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
+
 
 ------------------------------------------------------------------------
 ---AUTOSTART
 ------------------------------------------------------------------------
 myStartupHook = do
           --spawnOnce "emacs --daemon &" 
-          spawnOnce "nitrogen --restore &" 
+          spawnOnce "nitrogen --restore &"
           spawnOnce "compton &" -- or picom
           setWMName "LG3D" -- for java
           --spawnOnce "exec /usr/bin/trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 15 --transparent true --alpha 0 --tint 0x292d3e --height 19 &"
+          spawnOnce "dunst &"
+          spawnOnce "~/softwares/eww/target/release/eww daemon"
 
 ------------------------------------------------------------------------
 ---GRID SELECT
@@ -102,7 +106,7 @@ myColorizer = colorRangeFromClassName
                   (0x61,0x57,0x72) -- active bg
                   (0xc0,0xa7,0x9a) -- inactive fg
                   (0xff,0xff,0xff) -- active fg
-                  
+
 -- gridSelect menu layout
 mygridConfig colorizer = (buildDefaultGSConfig myColorizer)
     { gs_cellheight   = 30
@@ -112,7 +116,7 @@ mygridConfig colorizer = (buildDefaultGSConfig myColorizer)
     , gs_originFractY = 0.5
     , gs_font         = myFont
     }
-    
+
 spawnSelected' :: [(String, String)] -> X ()
 spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
     where conf = defaultGSConfig
@@ -125,53 +129,34 @@ myKeys =
         [ ("M-C-r", spawn "xmonad --recompile")      -- Recompiles xmonad
         , ("M-S-r", spawn "xmonad --restart")        -- Restarts xmonad
         , ("M-S-p", io exitSuccess)                  -- Quits xmonad
-    
+
+    -- Lockscreen
+        , ("M-S-l", spawn "xdg-screensaver lock")
+
     -- Windows
         , ("M-S-q", kill1)                           -- Kill the currently focused client
         , ("M-S-a", killAll)                         -- Kill all the windows on current workspace
 
     -- Floating windows
-        , ("M-t", withFocused $ windows . W.sink)  -- Push floating window back to tile.
-        , ("M-S-t", sinkAll)                  -- Push ALL floating windows back to tile.
-
-    -- Grid Select
-        , (("M-S-t"), spawnSelected'
-          [
-            --("Audacity", "audacity")
-            --, ("Deadbeef", "deadbeef")
-            --, ("Emacs", "emacs")
-            ("Firefox", "firefox")
-            --, ("Geany", "geany")
-            --, ("Geary", "geary")
-            , ("Gimp", "gimp")
-            --, ("Kdenlive", "kdenlive")
-            --, ("LibreOffice Impress", "loimpress")
-            --, ("LibreOffice Writer", "lowriter")
-            --, ("OBS", "obs")
-            --, ("PCManFM", "pcmanfm")
-            --, ("Simple Terminal", "st")
-            , ("Steam", "steam")
-            --, ("Surf Browser",    "surf suckless.org")
-            --, ("Xonotic", "xonotic-glx")
-            , ("Code", "code")
-          ])
+        , ("M-f", withFocused $ windows . W.sink)  -- Push floating window back to tile.
+        , ("M-S-f", sinkAll)                  -- Push ALL floating windows back to tile.
 
         , ("M-S-g", goToSelected $ mygridConfig myColorizer)
         , ("M-S-b", bringSelected $ mygridConfig myColorizer)
 
     -- Windows navigation
         , ("M-m", windows W.focusMaster)             -- Move focus to the master window
-        , ("M-j", windows W.focusDown)               -- Move focus to the next window
-        , ("M-k", windows W.focusUp)                 -- Move focus to the prev window
+        , ("M-n", windows W.focusDown)               -- Move focus to the next window
+        , ("M-i", windows W.focusUp)                 -- Move focus to the prev window
         , ("M-S-m", windows W.swapMaster)            -- Swap the focused window and the master window
-        , ("M-S-j", windows W.swapDown)              -- Swap the focused window with the next window
-        , ("M-S-k", windows W.swapUp)                -- Swap the focused window with the prev window
+        , ("M-S-n", windows W.swapDown)              -- Swap the focused window with the next window
+        , ("M-S-i", windows W.swapUp)                -- Swap the focused window with the prev window
         , ("M-<Backspace>", promote)                 -- Moves focused window to master, all others maintain order
         , ("M1-S-<Tab>", rotSlavesDown)              -- Rotate all windows except master and keep focus in place
         , ("M1-C-<Tab>", rotAllDown)                 -- Rotate all the windows in the current stack
-        , ("M-S-s", windows copyToAll)  
-        , ("M-C-s", killAllOtherCopies) 
-        
+        , ("M-S-s", windows copyToAll)
+        , ("M-C-s", killAllOtherCopies)
+
         , ("M-C-M1-<Up>", sendMessage Arrange)
         , ("M-C-M1-<Down>", sendMessage DeArrange)
         , ("M-<Up>", sendMessage (MoveUp 10))             --  Move focused window to up
@@ -191,8 +176,8 @@ myKeys =
         , ("M-l", sendMessage NextLayout)                              -- Switch to next layout
         --, ("M-S-<Space>", sendMessage ToggleStruts)                          -- Toggles struts
         --, ("M-S-n", sendMessage $ Toggle NOBORDERS)                          -- Toggles noborder
-        , ("M-s", sendMessage (Toggle NBFULL) >> sendMessage ToggleStruts) -- Toggles noborder/full
-        , ("M-f", sendMessage (T.Toggle "float"))
+        , ("M-t", sendMessage (Toggle NBFULL) >> sendMessage ToggleStruts) -- Toggles noborder/full
+        --, ("M-f", sendMessage (T.Toggle "float"))
         --, ("M-S-x", sendMessage $ Toggle REFLECTX)
         --, ("M-S-y", sendMessage $ Toggle REFLECTY)
         --, ("M-S-m", sendMessage $ Toggle MIRROR)
@@ -217,38 +202,12 @@ myKeys =
     -- Scratchpads
         --, ("M-C-<Return>", namedScratchpadAction myScratchPads "terminal")
         --, ("M-C-c", namedScratchpadAction myScratchPads "cmus")
-        
+
     -- Open My Preferred Terminal. I also run the FISH shell. Setting FISH as my default shell 
     -- breaks some things so I prefer to just launch "fish" when I open a terminal.
-        , ("M-<Return>", spawn (myTerminal))
+        , ("M-<Return>", spawn myTerminal)
         , ("M-S-<Return>", spawn "firefox")
-        , ("M-<Space>", spawn "rofi -show drun -theme Monokai")
-		
-    --- Dmenu Scripts (Alt+Ctr+Key)
-        -- , ("M-S-<Return>", spawn "dmenu_run")
-        -- , ("M1-C-e", spawn "./.dmenu/dmenu-edit-configs.sh")
-        -- , ("M1-C-h", spawn "./.dmenu/dmenu-hugo.sh")
-        -- , ("M1-C-m", spawn "./.dmenu/dmenu-sysmon.sh")
-        -- , ("M1-C-p", spawn "passmenu")
-        -- , ("M1-C-s", spawn "./.dmenu/dmenu-surfraw.sh")
-        -- , ("M1-C-/", spawn "./.dmenu/dmenu-scrot.sh")
-
-    --- My Applications (Super+Alt+Key)
-       -- , ("M-M1-a", spawn (myTerminal ++ " -e ncpamixer"))
-       -- , ("M-M1-b", spawn ("surf www.youtube.com/c/DistroTube/"))
-       -- , ("M-M1-c", spawn (myTerminal ++ " -e cmus"))
-       -- , ("M-M1-e", spawn (myTerminal ++ " -e neomutt"))
-       -- , ("M-M1-f", spawn (myTerminal ++ " -e sh ./.config/vifm/scripts/vifmrun"))
-       -- , ("M-M1-i", spawn (myTerminal ++ " -e irssi"))
-       -- , ("M-M1-j", spawn (myTerminal ++ " -e joplin"))
-       -- , ("M-M1-l", spawn (myTerminal ++ " -e lynx -cfg=~/.lynx/lynx.cfg -lss=~/.lynx/lynx.lss gopher://distro.tube"))
-       -- , ("M-M1-m", spawn (myTerminal ++ " -e toot curses"))
-       -- , ("M-M1-n", spawn (myTerminal ++ " -e newsboat"))
-       -- , ("M-M1-p", spawn (myTerminal ++ " -e pianobar"))
-       -- , ("M-M1-r", spawn (myTerminal ++ " -e rtv"))
-       -- , ("M-M1-w", spawn (myTerminal ++ " -e wopr report.xml"))
-       -- , ("M-M1-y", spawn (myTerminal ++ " -e youtube-viewer"))
-
+        , ("M-<Space>", spawn "rofi -show drun -theme Arc-Dark")
 
     -- Multimedia Keys
         --, ("<XF86AudioPlay>", spawn "cmus toggle")
@@ -257,17 +216,22 @@ myKeys =
         , ("<XF86AudioMute>",   spawn "amixer set Master toggle")  -- Bug prevents it from toggling correctly in 12.04.
         , ("<XF86AudioLowerVolume>", spawn "amixer set Master 5%- unmute")
         , ("<XF86AudioRaiseVolume>", spawn "amixer set Master 5%+ unmute")
-        , ("<XF86HomePage>", spawn "firefox")
-        , ("<XF86Search>", safeSpawn "firefox" ["https://www.google.com/"])
+        --, ("<XF86HomePage>", spawn "firefox")
+        --, ("<XF86Search>", safeSpawn "firefox" ["https://www.google.com/"])
         , ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 20")
         , ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 20")
         -- , ("<XF86Mail>", runOrRaise "geary" (resource =? "thunderbird"))
         --, ("<XF86Calculator>", runOrRaise "gcalctool" (resource =? "gcalctool"))
         -- , ("<XF86Eject>", spawn "toggleeject")
-        -- , ("<Print>", spawn "scrotd 0")
+        , ("<Print>", spawn "gnome-screenshot --area")
+
+    -- EWW shortcuts
+        ,("M-e", spawn "~/softwares/eww/target/release/eww open time_side")
+        ,("M-S-e", spawn "~/softwares/eww/target/release/eww close-all")
+
         ] where nonNSP          = WSIs (return (\ws -> W.tag ws /= "nsp"))
                 nonEmptyNonNSP  = WSIs (return (\ws -> isJust (W.stack ws) && W.tag ws /= "nsp"))
-                
+
 ------------------------------------------------------------------------
 ---WORKSPACES
 ------------------------------------------------------------------------
@@ -276,14 +240,14 @@ xmobarEscape = concatMap doubleLts
   where
         doubleLts '<' = "<<"
         doubleLts x   = [x]
-        
-myWorkspaces :: [String]   
-myWorkspaces = clickable . (map xmobarEscape) 
+
+myWorkspaces :: [String]
+myWorkspaces = clickable . map xmobarEscape
                $ ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
-  where                                                                      
-        clickable l = [ "<action=xdotool key super+" ++ show (n) ++ ">" ++ ws ++ "</action>" |
-                      (i,ws) <- zip [1..9] l,                                        
-                      let n = i ] 
+  where
+        clickable l = [ "<action=xdotool key super+" ++ show n ++ ">" ++ ws ++ "</action>" |
+                      (i,ws) <- zip [1..9] l,
+                      let n = i ]
 --myManageHook :: Query (Data.Monoid.Endo WindowSet)
 --myManageHook = composeAll
      --[
@@ -304,8 +268,8 @@ myWorkspaces = clickable . (map xmobarEscape)
 
 myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ --T.toggleLayouts monocle $ 
                mkToggle (NBFULL ?? NOBORDERS ?? EOT) $ myDefaultLayout
-             where 
-                myDefaultLayout = grid ||| tall -- ||| monocle --tall ||| grid ||| threeCol ||| threeRow ||| oneBig ||| noBorders monocle ||| space ||| floats
+             where
+                myDefaultLayout = tall ||| grid -- ||| monocle --tall ||| grid ||| threeCol ||| threeRow ||| oneBig ||| noBorders monocle ||| space ||| floats
 
 tall       = renamed [Replace "tall"]     $ limitWindows 12 $ spacing 6 $ ResizableTall 1 (3/100) (1/2) []
 grid       = renamed [Replace "grid"]     $ limitWindows 12 $ spacing 6 $ mkToggle (single MIRROR) $ Grid (16/10)
@@ -367,17 +331,17 @@ green   = "#8fc029"
 ------------------------------------------------------------------------
 main = do
     -- Launching three instances of xmobar on their monitors.
-    xmproc0 <- spawnPipe "xmobar -x 0 /home/laurent/.xmonad/xmobarrc"
-    -- xmproc1 <- spawnPipe "xmobar -x 1 /home/laurent/.xmonad/xmobarrc2"
-    -- xmproc2 <- spawnPipe "xmobar -x 2 /home/laurent/.config/xmobar/xmobarrc1"
-    
+    xmproc0 <- spawnPipe "xmobar -x 0 $HOME/.xmonad/xmobarrc"
+    -- xmproc1 <- spawnPipe "xmobar -x 1 $HOME/.xmonad/xmobarrc2"
+    -- xmproc2 <- spawnPipe "xmobar -x 2 $HOME/.config/xmobar/xmobarrc1"
+
     -- the xmonad, ya know...what the WM is named after!
     xmonad $ ewmh $ desktopConfig
         { manageHook = ( isFullscreen --> doFullFloat )
             -- <+> myManageHook
             <+> manageHook desktopConfig <+> manageDocks
         , logHook = dynamicLogWithPP xmobarPP
-                        { ppOutput = \x -> hPutStrLn xmproc0 x -- >> hPutStrLn xmproc1 x  >> hPutStrLn xmproc2 x
+                        { ppOutput = hPutStrLn xmproc0 -- >> hPutStrLn xmproc1 x  >> hPutStrLn xmproc2 x
                         , ppCurrent = xmobarColor green "" . wrap "[" "]" -- Current workspace in xmobar
                         , ppVisible = xmobarColor green ""                -- Visible but not current workspace
                         , ppHidden = xmobarColor blue "" . wrap "*" ""   -- Hidden workspaces in xmobar
@@ -391,10 +355,10 @@ main = do
         , modMask            = myModMask
         , terminal           = myTerminal
         , startupHook        = myStartupHook
-        , layoutHook         = myLayoutHook 
+        , layoutHook         = myLayoutHook
         , workspaces         = myWorkspaces
         , borderWidth        = myBorderWidth
         , normalBorderColor  = base03
         , focusedBorderColor = base2
         , keys = \c -> belgianKeys c <+> keys desktopConfig c
-        } `additionalKeysP`         myKeys 
+        } `additionalKeysP`         myKeys

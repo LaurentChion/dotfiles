@@ -1,0 +1,75 @@
+$black: #3b4252;
+$blue: #81a1c1;
+$cyan: #46a0c3;
+$green: #a3be8c;
+$magenta: #b48ead;
+$red: #bf616a;
+$white: #e5e9f0;
+$yellow: #ebcb8b;
+$background: #0b1015;
+$foreground:#d8dee9;
+
+$bg-color: rgba( #2e3440, 0);
+$primary-light-color: #46a0c3;
+$primary-dark-color: #20364d;
+
+
+* {
+    all: unset;
+  }
+  
+window {
+    background-color: $bg-color;
+    color: $primary-light-color;
+    font-family: Museo Sans;
+}
+/** Generic window ***********************************/
+.genwin {
+	background-color: #2e3440;
+	border-radius: 16px;
+}
+
+// time side
+.time-side {
+    margin: 20px 65px 0px 65px;
+    font-size: 60px;
+}
+
+.minute-side {
+    color: $primary-dark-color;
+}
+
+// system
+
+.iconcpu {
+	color: $red;
+}
+.iconmem {
+	color: $green;
+}
+.iconbright {
+	color: $yellow;
+}
+.iconbat {
+	color: $cyan;
+}
+.cpu_bar, .mem_bar, .bright_bar, .bat_bar, scale trough {
+	all: unset;
+	background-color: $bg-color;
+	border-radius: 16px;
+	min-height: 28px;
+	min-width: 240px;
+}
+
+.cpu_bar scale trough highlight {
+	background-color: $red;
+}
+.mem_bar scale trough highlight {
+	background-color: $green;
+}
+.bright_bar scale trough highlight {
+	background-color: $yellow;
+}
+.bat_bar scale trough highlight {
+	background-color: $cyan;
+}

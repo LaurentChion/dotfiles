@@ -1,0 +1,28 @@
+<eww>
+    <includes>
+    </includes>
+
+    <definitions>
+        <!-- Put your <def>'s in here -->
+        <def name="time_side">
+            <box orientation="v" space-evenly="false">
+                <box orientation="h" class="time-side" space-evenly="true">
+                    <box class="hour-side">{{hour}}</box>
+                    <box class="minute-side">{{min}}</box>
+                </box>
+                <box class="day-side">
+                    {{day}}
+                </box>
+            </box>
+        </def>
+    </definitions>
+
+    <variables>
+        <script-var name="min" interval="10s">date "+%M"</script-var>
+        <script-var name="hour" interval="30m">date "+%H"</script-var>
+        <script-var name="day" interval="15h">~/.config/eww/scripts/getday</script-var>
+    </variables>
+
+    <windows>
+    </windows>
+</eww>

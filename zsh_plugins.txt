@@ -2,9 +2,10 @@ robbyrussell/oh-my-zsh path:lib
 
 robbyrussell/oh-my-zsh path:plugins/git/git.plugin.zsh
 robbyrussell/oh-my-zsh path:plugins/z/z.plugin.zsh
-robbyrussell/oh-my-zsh path:plugins/docker-compose/docker-compose.plugin.zsh
+# robbyrussell/oh-my-zsh path:plugins/docker-compose/docker-compose.plugin.zsh
 robbyrussell/oh-my-zsh path:plugins/kubectl/kubectl.plugin.zsh
 robbyrussell/oh-my-zsh path:plugins/helm/helm.plugin.zsh
+
 djui/alias-tips
 
 zsh-users/zsh-completions

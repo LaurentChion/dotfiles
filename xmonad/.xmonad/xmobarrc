@@ -3,8 +3,8 @@
 -- you can find weather location codes here: http://weather.noaa.gov/index.html
 Config { font    = "xft:Delugia Nerd Font:pixelsize=12:antialias=true:hinting=true"
        , additionalFonts = [ "xft:FontAwesome:pixelsize=13" ]
-       , bgColor = "#272822"
-       , fgColor = "#9358fe"
+       , bgColor = "#1f212a"
+       , fgColor = "#bc3fbc"
        , position = Top
        , lowerOnStart = True
        , hideOnStart = False
@@ -18,17 +18,17 @@ Config { font    = "xft:Delugia Nerd Font:pixelsize=12:antialias=true:hinting=tr
                      Run Battery        [ "--template" , "Batt: <acstatus>"
                              , "--Low"      , "10"        -- units: %
                              , "--High"     , "80"        -- units: %
-                             , "--low"      , "#8fc029"
-                             , "--normal"   , "#fba922"
-                             , "--high"     , "#cc342b"
+                             , "--low"      , "#0dbc79"
+                             , "--normal"   , "#e5e510"
+                             , "--high"     , "#cd3131"
 
                              , "--" -- battery specific options
                                        -- discharging status
                                        , "-o"	, "<left>% (<timeleft>)"
                                        -- AC "on" status
-                                       , "-O"	, "<fc=#fba922>Charging</fc>"
+                                       , "-O"	, "<fc=#e5e510>Charging</fc>"
                                        -- charged status
-                                       , "-i"	, "<fc=#8fc029>Charged</fc>"
+                                       , "-i"	, "<fc=#0dbc79>Charged</fc>"
                              ] 50
                       -- Time and date
                     ,Run Date "\xf133 %b %d %Y (%H:%M)" "date" 10
@@ -44,26 +44,26 @@ Config { font    = "xft:Delugia Nerd Font:pixelsize=12:antialias=true:hinting=tr
                         "-t", "\xf108 Cpu: (<total>%)"
                         , "--Low"      , "50"
                         , "--High"     , "85"
-                        , "--low"      , "#8fc029"
-                        , "--normal"   , "#fba922"
-                        , "--high"     , "#cc342b"
+                        , "--low"      , "#0dbc79"
+                        , "--normal"   , "#e5e510"
+                        , "--high"     , "#cd3131"
                       ] 10
                     -- cpu activity monitor
                     --, Run MultiCpu       [ "--template" , "Cpu: <total0>%|<total1>%"
                     --         , "--Low"      , "50"         -- units: %
                     --         , "--High"     , "85"         -- units: %
-                    --         , "--low"      , "#8fc029"
-                    --         , "--normal"   , "#fba922"
-                    --         , "--high"     , "#cc342b"
+                    --         , "--low"      , "#0dbc79"
+                    --         , "--normal"   , "#e5e510"
+                    --         , "--high"     , "#cd3131"
                     --         ] 10
                     
                     -- memory usage monitor
                     , Run Memory         [ "--template" ,"Mem: <usedratio>%"
                              , "--Low"      , "20"        -- units: %
                              , "--High"     , "90"        -- units: %
-                             , "--low"      , "#8fc029"
-                             , "--normal"   , "#fba922"
-                             , "--high"     , "#cc342b"
+                             , "--low"      , "#0dbc79"
+                             , "--normal"   , "#e5e510"
+                             , "--high"     , "#cd3131"
                              ] 10
                       -- Ram used number and percent
                     --, Run Memory ["-t", "\xf233 mem: <used>M (<usedratio>%)"] 10
@@ -81,5 +81,5 @@ Config { font    = "xft:Delugia Nerd Font:pixelsize=12:antialias=true:hinting=tr
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " <icon=haskell_20.xpm/> <fc=#76715e>|</fc> %UnsafeStdinReader% }{ <fc=#cfd0c2> %uname% </fc><fc=#76715e>| </fc><fc=#fba922>%cpu% </fc><fc=#76715e>| </fc><fc=#fa2772>%memory% </fc><fc=#76715e>| </fc><fc=#55bcce>%disku% </fc><fc=#76715e>| </fc><fc=#8fc029>%wlp4s0% </fc><fc=#76715e>|</fc><fc=#66efd5>%date%</fc><fc=#76715e>| </fc><fc=#9358fe>%battery%</fc>"
+       , template = " <icon=haskell_20.xpm/> <fc=#eeeeef>|</fc> %UnsafeStdinReader% }{ <fc=#cfd0c2> %uname% </fc><fc=#eeeeef>| </fc><fc=#e5e510>%cpu% </fc><fc=#eeeeef>| </fc><fc=#f14c4c>%memory% </fc><fc=#eeeeef>| </fc><fc=#3b8eea>%disku% </fc><fc=#eeeeef>| </fc><fc=#0dbc79>%wlp4s0% </fc><fc=#eeeeef>|</fc><fc=#29b8db>%date%</fc><fc=#eeeeef>| </fc><fc=#bc3fbc>%battery%</fc>"
        }
