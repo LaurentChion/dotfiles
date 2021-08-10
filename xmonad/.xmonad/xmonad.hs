@@ -128,7 +128,7 @@ myKeys =
     -- Xmonad
         [ ("M-C-r", spawn "xmonad --recompile")      -- Recompiles xmonad
         , ("M-S-r", spawn "xmonad --restart")        -- Restarts xmonad
-        , ("M-S-p", io exitSuccess)                  -- Quits xmonad
+        , ("M-S-<Escape>", io exitSuccess)                  -- Quits xmonad
 
     -- Lockscreen
         , ("M-S-l", spawn "xdg-screensaver lock")
