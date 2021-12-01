@@ -68,7 +68,7 @@ import XMonad.Layout.IM (withIM, Property(Role))
     -- Prompts
 import XMonad.Prompt (defaultXPConfig, XPConfig(..), XPPosition(Top), Direction1D(..))
 
-import XMonad.Config.Azerty
+import XMonad.Config.Azerty ( belgianKeys )
 
 -- import Eww (startDaemon, closeAll)
 
@@ -89,7 +89,7 @@ windowCount     = gets $ Just . show . length . W.integrate' . W.stack . W.works
 myStartupHook = do
           --spawnOnce "emacs --daemon &" 
           spawnOnce "nitrogen --restore &"
-          spawnOnce "compton &" -- or picom
+          spawnOnce "picom &" -- or picom
           setWMName "LG3D" -- for java
           --spawnOnce "exec /usr/bin/trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 15 --transparent true --alpha 0 --tint 0x292d3e --height 19 &"
           spawnOnce "dunst &"
@@ -119,7 +119,7 @@ mygridConfig colorizer = (buildDefaultGSConfig myColorizer)
 
 spawnSelected' :: [(String, String)] -> X ()
 spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
-    where conf = defaultGSConfig
+    where conf = def -- defaultGSConfig
 
 ------------------------------------------------------------------------
 ---KEYBINDINGS
@@ -131,7 +131,7 @@ myKeys =
         , ("M-S-<Escape>", io exitSuccess)                  -- Quits xmonad
 
     -- Lockscreen
-        , ("M-S-l", spawn "xdg-screensaver lock")
+        , ("M-S-l", spawn "slock")
 
     -- Windows
         , ("M-S-q", kill1)                           -- Kill the currently focused client
