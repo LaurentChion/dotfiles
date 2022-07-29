@@ -1,6 +1,18 @@
+alias withNvidia="__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia"
+
 export ZSH_CACHE_DIR=~/zsh-cache
 
 source ~/.zsh_plugins.sh
+
+# set PATH so it includes user's private bin if it exists
+# if [ -d "$HOME/bin" ] ; then
+#     PATH="$HOME/bin:$PATH"
+# fi
+
+# set PATH so it includes user's private bin if it exists
+# if [ -d "$HOME/.local/bin" ] ; then
+#     PATH="$HOME/.local/bin:$PATH"
+# fi
 
 # autoload -Uz compinit
 # compinit
@@ -42,7 +54,7 @@ zstyle ':completion:*' menu select
 fpath+=~/.zfunc
 
 # Haskell
-[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
+# [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
 
 # For ubuntu
  alias bat=batcat

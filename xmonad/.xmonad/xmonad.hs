@@ -91,9 +91,9 @@ myStartupHook = do
           spawnOnce "nitrogen --restore &"
           spawnOnce "picom &" -- or picom
           setWMName "LG3D" -- for java
-          --spawnOnce "exec /usr/bin/trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 15 --transparent true --alpha 0 --tint 0x292d3e --height 19 &"
-          spawnOnce "dunst &"
-          spawnOnce "~/softwares/eww/target/release/eww daemon"
+          -- spawnOnce "exec /usr/bin/trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 15 --transparent true --alpha 0 --tint 0x292d3e --height 19 &"
+          spawnOnce "dunst"
+          -- spawnOnce "~/softwares/eww/target/release/eww daemon"
 
 ------------------------------------------------------------------------
 ---GRID SELECT
@@ -203,10 +203,9 @@ myKeys =
         --, ("M-C-<Return>", namedScratchpadAction myScratchPads "terminal")
         --, ("M-C-c", namedScratchpadAction myScratchPads "cmus")
 
-    -- Open My Preferred Terminal. I also run the FISH shell. Setting FISH as my default shell 
-    -- breaks some things so I prefer to just launch "fish" when I open a terminal.
-        , ("M-<Return>", spawn myTerminal)
-        , ("M-S-<Return>", spawn "firefox")
+    -- Main Shortcuts
+        , ("M-<Return>", spawn ("__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia " ++ myTerminal))
+        , ("M-S-<Return>", spawn "__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia firefox")
         , ("M-<Space>", spawn "rofi -show drun -theme Arc-Dark")
 
     -- Multimedia Keys
@@ -226,8 +225,8 @@ myKeys =
         , ("<Print>", spawn "gnome-screenshot --area")
 
     -- EWW shortcuts
-        ,("M-e", spawn "~/softwares/eww/target/release/eww open time_side")
-        ,("M-S-e", spawn "~/softwares/eww/target/release/eww close-all")
+        -- ,("M-e", spawn "~/softwares/eww/target/release/eww open time_side")
+        -- ,("M-S-e", spawn "~/softwares/eww/target/release/eww close-all")
 
         ] where nonNSP          = WSIs (return (\ws -> W.tag ws /= "nsp"))
                 nonEmptyNonNSP  = WSIs (return (\ws -> isJust (W.stack ws) && W.tag ws /= "nsp"))
