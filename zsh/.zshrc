@@ -1,3 +1,4 @@
+alias nvim=$HOME/softwares/neovim/install/bin/nvim
 alias n=nvim
 alias o=xdg-open
 alias withNvidia="__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia"
@@ -49,6 +50,10 @@ else
     fi
 fi
 unset __conda_setup
+
+if [ -f "$HOME/softwares/miniconda3/etc/profile.d/mamba.sh" ]; then
+    . "$HOME/softwares/miniconda3/etc/profile.d/mamba.sh"
+fi
 # <<< conda initialize <<<
 
 
@@ -59,4 +64,4 @@ fpath+=~/.zfunc
 # [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
 
 # For ubuntu
- alias bat=batcat
+alias bat=batcat

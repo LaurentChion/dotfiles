@@ -204,7 +204,8 @@ myKeys =
         --, ("M-C-c", namedScratchpadAction myScratchPads "cmus")
 
     -- Main Shortcuts
-        , ("M-<Return>", spawn ("__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia " ++ myTerminal))
+        , ("M-<Return>", spawn myTerminal)
+        -- , ("M-<Return>", spawn ("__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia " ++ myTerminal))
         , ("M-S-<Return>", spawn "__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia firefox")
         , ("M-<Space>", spawn "rofi -show drun -theme Arc-Dark")
 
