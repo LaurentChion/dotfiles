@@ -65,3 +65,11 @@ fpath+=~/.zfunc
 
 # For ubuntu
 alias bat=batcat
+
+# additional software
+export PATH=$PATH:"$HOME/softwares/fx"
+# Spyware from securtity
+# export REQUESTS_CA_BUNDLE="$HOME/softwares/Netskope.pem"
+# export NODE_EXTRA_CA_CERTS="$HOME/softwares/Netskope.pem"
+
+export PATH=/home/lchion/.pixi/bin:$PATH
