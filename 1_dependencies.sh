@@ -9,4 +9,7 @@ firefox https://code.visualstudio.com/docs/?dv=win32user
 
 $install_cmd stow zsh htop curl
 
+# install starship bar
+curl -sS https://starship.rs/install.sh | sh -s -- -b ~/.local/bin
+
 $clean
