@@ -22,7 +22,7 @@ source ~/.zsh_plugins.sh
 
 eval "$(starship init zsh)"
 
-export VISUAL=code
+export VISUAL=zed
 
 # NVM
 # export NVM_DIR="$HOME/.nvm"
