@@ -9,6 +9,13 @@ clean='sudo apt autoremove'
 
 $install_cmd stow zsh htop curl
 
+# install fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
+# install zoxide
+curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+
 # install starship bar
 curl -sS https://starship.rs/install.sh | sh -s -- -b ~/.local/bin
 

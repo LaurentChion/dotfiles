@@ -1,4 +1,5 @@
 alias nvim=$HOME/softwares/neovim/install/bin/nvim
+
 alias n=nvim
 alias o=xdg-open
 alias withNvidia="__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia"
@@ -68,8 +69,13 @@ alias bat=batcat
 
 # additional software
 export PATH=$PATH:"$HOME/softwares/fx"
-# Spyware from securtity
+
+# Spywares from security
 # export REQUESTS_CA_BUNDLE="$HOME/softwares/Netskope.pem"
 # export NODE_EXTRA_CA_CERTS="$HOME/softwares/Netskope.pem"
 
 export PATH=/home/lchion/.pixi/bin:$PATH
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+eval "$(zoxide init zsh)"
