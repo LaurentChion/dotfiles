@@ -68,3 +68,4 @@ export PATH=/home/lchion/.pixi/bin:$PATH
 alias ls=eza
 alias tmux=zellij
 eval "$(zoxide init zsh)"
+export PATH="/home/lchion/.pixi/bin:$PATH"

@@ -22,6 +22,9 @@ curl -sS https://starship.rs/install.sh | sh -s -- -b ~/.local/bin
 # install zed editor
 curl -f https://zed.dev/install.sh | sh
 
+# install pixi
+curl -fsSL https://pixi.sh/install.sh | zsh
+
 # install rustc
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
