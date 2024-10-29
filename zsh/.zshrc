@@ -65,4 +65,6 @@ export PATH=/home/lchion/.pixi/bin:$PATH
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+alias ls=eza
+alias tmux=zellij
 eval "$(zoxide init zsh)"

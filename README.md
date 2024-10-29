@@ -4,19 +4,22 @@ Install scripts and dotfiles
 ## Main philosophy
 
 Here you can find my configuration files for different tools.
-I may not use them all at once.
+I may not use all of them and some file are still here from previous setup.
 
 My main use of this repo is to clone it on a new machine and to cherry pick what I need using [Stow](https://www.gnu.org/software/stow/)
 
-## Usage example:
+## How to use?
 
 ### Prerequisite
-- Clone this repo
+- Clone this repo: `git clone https://github.com/LaurentChion/dotfiles.git -o ~/.dotfiles`
+
+### Usage
 
 Let say I want to use my kitty config.
-- Go into this cloned repository
-- execute ´stow kitty´
+- Go into this cloned repository: `cd ~/.dotfiles`
+- setup kitty: `stow kitty`
 
+Some other tools are not that simple to setup and condigure to feel free to have a look on various scripts.
 
 ## Troubleshooting
 
