@@ -1,2 +1,2 @@
 #/bin/bash
-stow -v regolith zsh
+stow -v zsh kitty

@@ -4,10 +4,10 @@
 install_cmd='sudo apt install -y '
 clean='sudo apt autoremove'
 
-# To download vscode
-# firefox https://code.visualstudio.com/docs/?dv=win32user
-
 $install_cmd stow zsh htop curl
+
+# install asdf
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.1
 
 # install fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
