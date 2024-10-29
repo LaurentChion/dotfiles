@@ -1,7 +1,7 @@
 alias nvim=$HOME/softwares/neovim/install/bin/nvim
 
 alias n=nvim
-alias o=xdg-open
+alias o="handlr open"
 alias withNvidia="__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia"
 
 export ZSH_CACHE_DIR=~/zsh-cache
