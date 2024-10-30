@@ -67,5 +67,6 @@ export PATH=/home/lchion/.pixi/bin:$PATH
 
 alias ls=eza
 alias tmux=zellij
+alias cat="bat -p --paging never"
 eval "$(zoxide init zsh)"
 export PATH="/home/lchion/.pixi/bin:$PATH"
