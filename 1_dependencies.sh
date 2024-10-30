@@ -1,8 +1,13 @@
 #/bin/bash
 
 #TODO: define an install command template based on the distro
-install_cmd='sudo apt install -y '
-clean='sudo apt autoremove'
+
+# install_cmd_ubuntu='sudo apt install -y '
+# clean='sudo apt autoremove'
+
+install_cmd_arch='sudo pacman -S '
+
+install_cmd=install_cmd_arch
 
 $install_cmd stow zsh htop curl
 
@@ -32,7 +37,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 cargo install eza
 cargo install --locked zellij
-cargo install handlr
+cargo install handlr-regex
 cargo install bottom
 
 $clean
