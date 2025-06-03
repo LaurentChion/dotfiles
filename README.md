@@ -1,27 +1,23 @@
 # Dotfiles
+
 Install scripts and dotfiles
 
 ## Main philosophy
 
-Here you can find my configuration files for different tools.
-I may not use all of them and some file are still here from previous setup.
+Here is my configuration files for different tools that I use.
 
-My main use of this repo is to clone it on a new machine and to cherry pick what I need using [Stow](https://www.gnu.org/software/stow/)
+The idea is to create a container, install needed tool for developement and to setup various configuration without the need of admin rights.
 
 ## How to use?
 
-### Prerequisite
-- Clone this repo: `git clone https://github.com/LaurentChion/dotfiles.git -o ~/.dotfiles`
+### Requirements
+- [Podman](https://podman.io/) (recommended) or [Docker](https://www.docker.com/) (not tested)
+- [Distrobox](https://distrobox.it/)
 
 ### Usage
 
-Let say I want to use my kitty config.
-- Go into this cloned repository: `cd ~/.dotfiles`
-- setup kitty: `stow kitty`
+> Warning: Following command will mess with your configuration. It is advise to look at the **distrobox.ini** file and to comments line that will setup various configuration (see line that start with *init_hooks="stow ......"*).
 
-Some other tools are not that simple to setup and condigure to feel free to have a look on various scripts.
-
-## Troubleshooting
-
-### When using starship I saw conda (base) environment
-Solution: Disable default display by miniconda: ´conda config --set changeps1 False´ (see https://github.com/spaceship-prompt/spaceship-prompt/issues/218#issuecomment-454722987)
+- Clone this repo in your HOME directory: `git clone https://github.com/LaurentChion/dotfiles.git -o ~/.dotfiles`
+- Go into it: `cd dotfiles`
+- Create the container: `distrobox assemble create`
