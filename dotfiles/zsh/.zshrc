@@ -5,6 +5,12 @@ autoload -U compinit; compinit
 zstyle ':completion:*' menu select
 # fpath+=~/.zfunc
 
+# Custom function to navigate
+function ..() {
+  cd "${1:-..}"
+}
+
+
 # Various alias
 alias ls=eza
 alias tmux=zellij
