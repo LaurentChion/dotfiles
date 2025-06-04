@@ -1,7 +1,10 @@
 shell = "zsh"
 
-[plugins.oh-my-zsh]
-github = "ohmyzsh/ohmyzsh"
+# [plugins.oh-my-zsh]
+# github = "ohmyzsh/ohmyzsh"
+
+[plugins.git-alias]
+github = "chivalryq/git-alias"
 
 [plugins.alias-tips]
 github= "djui/alias-tips"
@@ -9,9 +12,10 @@ github= "djui/alias-tips"
 [plugins.completions]
 github = "zsh-users/zsh-completions"
 
-[plugins.zsh-syntax-highlighting]
-github = "zsh-users/zsh-syntax-highlighting"
-
 [plugins.zsh-autosuggestions]
 github = "zsh-users/zsh-autosuggestions"
 use = ["{{ name }}.zsh"]
+
+[plugins.zsh-syntax-highlighting]
+github = "zsh-users/zsh-syntax-highlighting"
+

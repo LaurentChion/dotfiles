@@ -1,21 +1,22 @@
-alias n=nvim
-alias o="handlr open"
-
-# autoload -Uz compinit
-# compinit
+# fix for ctrl + arrow
+bindkey '^[[1;5D' backward-word
+bindkey '^[[1;5C' forward-word
 
 eval "$(sheldon source)"
 
-eval "$(starship init zsh)"
-
+# Load autocompletion
+autoload -U compinit; compinit
 zstyle ':completion:*' menu select
-fpath+=~/.zfunc
+# fpath+=~/.zfunc
 
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
+# Various alias
 alias ls=eza
 alias tmux=zellij
 alias cat="bat -p --paging never"
+alias n=nvim
+
 eval "$(zoxide init zsh)"
 
 fastfetch --kitty-icat $HOME/dotfiles/ricing/goku-sunset.gif --logo-width 40
+
+eval "$(starship init zsh)"
