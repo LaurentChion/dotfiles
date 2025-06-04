@@ -1,12 +1,11 @@
 #!/bin/sh
-# Configuring kitty
-stow -t $HOME -d $HOME/dotfiles/dotfiles --delete kitty
 
-# Configuring zsh
-stow -t $HOME -d $HOME/dotfiles/dotfiles --delete zsh
+alias unstow='stow --delete'
 
-# Configuring neovim
-stow -t $HOME -d $HOME/dotfiles/dotfiles --delete neovim
+declare -a packages=("kitty" "zsh" "neovim" "zellij")
 
-# Configuring zellij
-stow -t $HOME -d $HOME/dotfiles/dotfiles --delete zellij
+for i in "${packages[@]}"
+do
+  echo "Unstow $i"
+  unstow -t $HOME -d $HOME/dotfiles/dotfiles $i
+done

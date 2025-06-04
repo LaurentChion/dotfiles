@@ -16,8 +16,7 @@ The idea is to create a container, install needed tool for developement and to s
 
 ### Usage
 
-> Warning: Following command will mess with your configuration. It is advise to look at the **distrobox.ini** file and to comments line that will setup various configuration (see line that start with *init_hooks="stow ......"*).
-
 - Clone this repo in your HOME directory: `git clone https://github.com/LaurentChion/dotfiles.git -o ~/.dotfiles`
 - Go into it: `cd dotfiles`
 - Create the container: `distrobox assemble create`
+- Load configurations: `./stow.sh`

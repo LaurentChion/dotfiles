@@ -1,12 +1,9 @@
 #!/bin/sh
-# Configuring kitty
-stow -t $HOME -d $HOME/dotfiles/dotfiles kitty
 
-# Configuring zsh
-stow -t $HOME -d $HOME/dotfiles/dotfiles zsh
+declare -a packages=("kitty" "zsh" "neovim" "zellij")
 
-# Configuring neovim
-stow -t $HOME -d $HOME/dotfiles/dotfiles neovim
-
-# Configuring zellij
-stow -t $HOME -d $HOME/dotfiles/dotfiles zellij
+for i in "${packages[@]}"
+do
+  echo "Stow $i"
+  stow -t $HOME -d $HOME/dotfiles/dotfiles $i
+done
