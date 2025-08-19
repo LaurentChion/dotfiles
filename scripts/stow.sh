@@ -1,6 +1,6 @@
 #!/bin/sh
 
-declare -a packages=("kitty" "zsh" "neovim" "zellij")
+declare -a packages=("kitty" "zsh" "neovim" "zellij", "helix")
 
 for i in "${packages[@]}"
 do

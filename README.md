@@ -19,4 +19,4 @@ The idea is to create a container, install needed tool for developement and to s
 - Clone this repo in your HOME directory: `git clone https://github.com/LaurentChion/dotfiles.git -o ~/.dotfiles`
 - Go into it: `cd dotfiles`
 - Create the container: `distrobox assemble create`
-- Load configurations: `./stow.sh`
+- Load configurations: `./scripts/stow.sh`
